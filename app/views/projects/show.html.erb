@@ -1,0 +1,40 @@
+<div class="container text-center">
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+
+
+<hr/>
+
+<h2>Agregar Persona</h2>
+<%= form_tag(add_person_project_path(@project)) do %>
+  <select name="person_id">
+    <% @nonSelectedPersons.each do |p| %>
+      <option value="<%= p.id %>"><%= p.name %></option>
+    <% end %>
+  </select>
+  <%= submit_tag "Guardar" %>
+<% end %>
+
+<h2>Personas del proyecto <b><%= @project.name %></b></h2>
+<table class=" container text-center">
+  <tbody>
+    <% @project.people.each do |peop| %>
+      <tr>
+        <td>
+          <%= peop.name %>
+          <a href="<%= remove_person_project_path(@project, peop )%>" data-method="delete" >[ eliminar ]</a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Editar', edit_project_path(@project), class:'btn btn-success' %> |
+<%= link_to 'Vovler', projects_path, class:'btn btn-danger' %>
+
+</div>

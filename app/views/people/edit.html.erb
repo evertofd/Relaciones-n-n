@@ -1,0 +1,9 @@
+<div class="container text-center">
+  <h1>Editar Informacion</h1>
+
+  <%= render 'form', person: @person %>
+
+  <%= link_to 'Proyectos', @person, class: 'btn btn-success' %> |
+  <%= link_to 'Volver', people_path, class: 'btn btn-danger' %>
+
+</div>

@@ -1,0 +1,38 @@
+<div class="container text-center">
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @person.name %>
+  </p>
+
+  <hr/>
+
+  <h2>Agregar Proyecto</h2>
+  <%= form_tag(add_project_person_path(@person)) do %>
+    <select name="project_id">
+      <% @nonSelectedProjects.each do |p| %>
+        <option value="<%= p.id %>"><%= p.name %></option>
+      <% end %>
+    </select>
+    <%= submit_tag "Guardar" %>
+  <% end %>
+
+  <h2>Proyecto de <b><%= @person.name %></b></h2>
+  <table class="container text-center">
+    <tbody>
+      <% @person.projects.each do |pro| %>
+        <tr>
+          <td>
+            <%= pro.name %>
+            <a href="<%= remove_person_project_path(@person, pro )%>" data-method="delete" >[ eliminar ]</a>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'Editar', edit_person_path(@person), class:'btn btn-success' %> |
+  <%= link_to 'Volver', people_path, class:'btn btn-info' %>
+
+</div>
